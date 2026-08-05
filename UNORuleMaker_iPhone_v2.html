@@ -2,36 +2,34 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNOルールメーカー</title>
 
-
-
     <style>
-.settingArea {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    display: none;
-}
+        .settingArea {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: none;
+        }
 
-.settingArea div {
-    margin: 10px;
-}
+        .settingArea div {
+            margin: 10px;
+        }
 
-.settingArea input {
-    width: 60px;
-    font-size: 18px;
-    text-align: center;
-}
+        .settingArea input {
+            width: 60px;
+            font-size: 18px;
+            text-align: center;
+        }
 
         body {
             font-family: sans-serif;
             text-align: center;
             margin-top: 40px;
-                  font-size:16px;
+            font-size: 16px;
             transition: background-color 0.5s;
         }
 
@@ -45,10 +43,17 @@
             padding: 12px 20px;
             margin: 8px;
             border-radius: 12px;
-	    color: white;
-	    background-color: #3498db;
+
+            color: white;
+            background-color: #3498db;
+
             font-weight: bold;
         }
+
+	.settingButton {
+    	    background-color: #6c757d;
+    	    color: white;
+	}
 
         .gameCount {
             font-size: 24px;
@@ -81,13 +86,12 @@
             font-weight: bold;
         }
 
-              .footer {
-               margin-top: 40px;
+        .footer {
+            margin-top: 40px;
             color: #888;
             font-size: 12px;
             line-height: 1.8;
-              }
-
+        }
     </style>
 </head>
 
@@ -99,8 +103,7 @@
         現在 第1ゲーム
     </div>
 
-    <div class="bonusInfo" id="bonusInfo">
-    </div>
+    <div class="bonusInfo" id="bonusInfo"></div>
 
     <button onclick="drawRule()">
         ルール抽選
@@ -114,43 +117,43 @@
         リセット
     </button>
 
-<button onclick="toggleSetting()">
-    設定
-</button>
-
-<div class="settingArea" id="settingArea">
-
-    <h3>抽選確率設定</h3>
-
-    <div>
-        ドロー2返し
-        <input id="draw2Rate" type="number" min="0" max="100">
-        %
-    </div>
-
-    <div>
-        上がりカード(なんでもOK)
-        <input id="finishRate" type="number" min="0" max="100">
-        %
-    </div>
-
-    <div>
-        複数枚出し
-        <input id="multiRate" type="number" min="0" max="100">
-        %
-    </div>
-
-    <div>
-        BONUS時 2倍確率
-        <input id="chance2Rate" type="number" min="0" max="100">
-        %
-    </div>
-
-    <button onclick="saveSetting()">
-        保存
+    <button class="settingButton" onclick="toggleSetting()">
+        設定
     </button>
 
-</div>
+    <div class="settingArea" id="settingArea">
+
+        <h3>抽選確率設定</h3>
+
+        <div>
+            ドロー2返し
+            <input id="draw2Rate" type="number" min="0" max="100">
+            %
+        </div>
+
+        <div>
+            上がりカード(なんでもOK)
+            <input id="finishRate" type="number" min="0" max="100">
+            %
+        </div>
+
+        <div>
+            複数枚出し
+            <input id="multiRate" type="number" min="0" max="100">
+            %
+        </div>
+
+        <div>
+            BONUS時 2倍確率
+            <input id="chance2Rate" type="number" min="0" max="100">
+            %
+        </div>
+
+        <button onclick="saveSetting()">
+            保存
+        </button>
+
+    </div>
 
     <div class="result" id="result">
         ボタンを押してください
@@ -158,67 +161,65 @@
 
     <script>
 
-function toggleSetting() {
+        let gameNumber = 1;
 
-    const area =
-        document.getElementById("settingArea");
+        function toggleSetting() {
+            const area = document.getElementById("settingArea");
 
-    if (area.style.display === "block") {
+            if (area.style.display === "block") {
+                area.style.display = "none";
+            } else {
+                area.style.display = "block";
+            }
+        }
 
-        area.style.display = "none";
+	function saveSetting() {
 
-    } else {
-
-        area.style.display = "block";
-    }
-}
-
-function saveSetting() {
-
-    localStorage.setItem(
+    	localStorage.setItem(
         "draw2Rate",
         document.getElementById("draw2Rate").value
-    );
+    	);
 
-    localStorage.setItem(
+    	localStorage.setItem(
         "finishRate",
         document.getElementById("finishRate").value
-    );
+    	);
 
-    localStorage.setItem(
+    	localStorage.setItem(
         "multiRate",
         document.getElementById("multiRate").value
-    );
+    	);
 
-    localStorage.setItem(
+    	localStorage.setItem(
         "chance2Rate",
         document.getElementById("chance2Rate").value
-    );
+    	);
 
-    alert("設定を保存しました");
+    	document.getElementById("settingArea").style.display =
+        "none";
+
+	document.getElementById("settingArea").style.display =
+    	"none";
+
+	document.getElementById("result").innerHTML =
+    	"✅ 設定を保存しました";
+
 }
 
-function loadSetting() {
+        function loadSetting() {
 
-    document.getElementById("draw2Rate").value =
-        localStorage.getItem("draw2Rate") || 50;
+            document.getElementById("draw2Rate").value =
+                localStorage.getItem("draw2Rate") || 50;
 
-    document.getElementById("finishRate").value =
-        localStorage.getItem("finishRate") || 70;
+            document.getElementById("finishRate").value =
+                localStorage.getItem("finishRate") || 70;
 
-    document.getElementById("multiRate").value =
-        localStorage.getItem("multiRate") || 60;
+            document.getElementById("multiRate").value =
+                localStorage.getItem("multiRate") || 60;
 
-    document.getElementById("chance2Rate").value =
-        localStorage.getItem("chance2Rate") || 60;
-}
-
-
-
-        let gameNumber = 1;
-        
-        loadSetting();
-        updateBonusInfo();
+            document.getElementById("chance2Rate").value =
+                localStorage.getItem("chance2Rate") || 60;
+        }
 
         function updateBonusInfo() {
 
@@ -263,39 +264,39 @@ function loadSetting() {
                     gameNumber % 5 === 0;
 
                 const draw2Rate =
-    Number(document.getElementById("draw2Rate").value);
+                    Number(document.getElementById("draw2Rate").value);
 
-let draw2 =
-    Math.random() < draw2Rate / 100
-    ? "あり"
-    : "なし";
+                const finishRate =
+                    Number(document.getElementById("finishRate").value);
 
-const finishRate =
-    Number(document.getElementById("finishRate").value);
+                const multiRate =
+                    Number(document.getElementById("multiRate").value);
 
-let finish =
-    Math.random() < finishRate / 100
-    ? "なんでもOK"
-    : "数字のみ";
+                let draw2 =
+                    Math.random() < draw2Rate / 100
+                        ? "あり"
+                        : "なし";
 
-const multiRate =
-    Number(document.getElementById("multiRate").value);
+                let finish =
+                    Math.random() < finishRate / 100
+                        ? "なんでもOK"
+                        : "数字のみ";
 
-let multi =
-    Math.random() < multiRate / 100
-    ? "あり"
-    : "なし";
+                let multi =
+                    Math.random() < multiRate / 100
+                        ? "あり"
+                        : "なし";
+
                 let chance = "なし";
 
                 if (isBonusGame) {
 
                     let r = Math.random();
 
-const chance2Rate =
-    Number(document.getElementById("chance2Rate").value);
+                    const chance2Rate =
+                        Number(document.getElementById("chance2Rate").value);
 
-if (r < chance2Rate / 100)
- {
+                    if (r < chance2Rate / 100) {
                         chance = "2倍";
                     } else {
                         chance = "3倍";
@@ -314,12 +315,11 @@ if (r < chance2Rate / 100)
                 if (isBonusGame) {
 
                     chanceDisplay =
-                        `<div class='chanceBonus'>${chance}</div>`;
+                        `<div class="chanceBonus">${chance}</div>`;
 
                 } else {
 
                     chanceDisplay = chance;
-
                 }
 
                 document.getElementById("result").innerHTML =
