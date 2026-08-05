@@ -131,19 +131,19 @@
             %
         </div>
 
-        <div>
+		<div>
+            複数枚出し有り
+            <input id="multiRate" type="number" min="0" max="100">
+            %
+        </div>
+       
+		<div>
             上がりカードなんでもOK
             <input id="finishRate" type="number" min="0" max="100">
             %
         </div>
 
-        <div>
-            複数枚出しOK
-            <input id="multiRate" type="number" min="0" max="100">
-            %
-        </div>
-
-        <div>
+		<div>
             BONUS時 2倍確率
             <input id="chance2Rate" type="number" min="0" max="100">
             %
@@ -331,11 +331,11 @@
 
                     ドロー2返し：${draw2}
                     <br>
-
-                    上がりカード：${finish}
+                    
+					複数枚出し：${multi}
                     <br>
-
-                    複数枚出し：${multi}
+                    
+					上がりカード：${finish}
                     <br>
 
                     ポイントアップ：
