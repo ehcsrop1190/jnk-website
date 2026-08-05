@@ -315,7 +315,7 @@
                 if (isBonusGame) {
 
                     chanceDisplay =
-                        `<div class="chanceBonus">${chance}</div>`;
+                        `<span class='chanceBonus'>${chance}</span>`;
 
                 } else {
 
@@ -338,7 +338,8 @@
                     複数枚出し：${multi}
                     <br>
 
-                    チャンスタイム：${chanceDisplay}
+                    チャンスタイム：
+		    ${chanceDisplay}
                     `;
             }, 1000);
         }
@@ -355,11 +356,17 @@
 
     updateBonusInfo();
 }
+    window.onload = function () {
+
+    loadSetting();
+    updateBonusInfo();
+
+};
     </script>
 
 <div class="footer">
 　UNO Rule Maker<br>
-　Version 1.6<br>
+　Version 2.0<br>
 　© 2026 Naoki,Joji Kojima
 </div>
 
