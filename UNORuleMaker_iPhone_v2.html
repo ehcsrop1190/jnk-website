@@ -144,8 +144,8 @@
         </div>
 
 		<div>
-            BONUS時 2倍確率
-            <input id="chance2Rate" type="number" min="0" max="100">
+            BONUS時 3倍確率
+            <input id="chance3Rate" type="number" min="0" max="100">
             %
         </div>
 
@@ -191,8 +191,8 @@
     	);
 
     	localStorage.setItem(
-        "chance2Rate",
-        document.getElementById("chance2Rate").value
+        "chance3Rate",
+        document.getElementById("chance3Rate").value
     	);
 
     	document.getElementById("settingArea").style.display =
@@ -217,8 +217,8 @@
             document.getElementById("multiRate").value =
                 localStorage.getItem("multiRate") || 60;
 
-            document.getElementById("chance2Rate").value =
-                localStorage.getItem("chance2Rate") || 60;
+            document.getElementById("chance3Rate").value =
+                localStorage.getItem("chance3Rate") || 60;
         }
 
         function updateBonusInfo() {
@@ -293,10 +293,10 @@
 
                     let r = Math.random();
 
-                    const chance2Rate =
-                        Number(document.getElementById("chance2Rate").value);
+                    const chance3Rate =
+                        Number(document.getElementById("chance3Rate").value);
 
-                    if (r < chance2Rate / 100) {
+                    if (r < chance3Rate / 100) {
                         chance = "2倍";
                     } else {
                         chance = "3倍";
