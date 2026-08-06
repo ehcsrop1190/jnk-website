@@ -13,6 +13,9 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             display: none;
+   	    width: fit-content;
+	    margin-left: auto;
+            margin-right: auto;
         }
 
         .settingArea div {
@@ -92,6 +95,20 @@
             font-size: 12px;
             line-height: 1.8;
         }
+
+	.settingRow {
+    	    display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 350px;
+            margin: 10px auto;
+	}
+
+	    .settingLabel {
+                width: 220px;
+                text-align: left;
+	}
     </style>
 </head>
 
@@ -123,35 +140,46 @@
 
     <div class="settingArea" id="settingArea">
 
-        <h3>抽選確率設定</h3>
+       <h3>抽選確率設定</h3>
 
-        <div>
-            ドロー2返し有り
-            <input id="draw2Rate" type="number" min="0" max="100">
-            %
-        </div>
+        	<div class="settingRow">
+    	<span class="settingLabel">ドロー2返し有り</span>
+    	<span>
+        <input id="draw2Rate" type="number" min="0" max="100">
+        %
+    	</span>
+	</div>
 
-		<div>
-            複数枚出し有り
-            <input id="multiRate" type="number" min="0" max="100">
-            %
-        </div>
-       
-		<div>
-            上がりカードなんでもOK
-            <input id="finishRate" type="number" min="0" max="100">
-            %
-        </div>
+		<div class="settingRow">
+    	<span class="settingLabel">複数枚出し有り</span>
+    	<span>
+        <input id="multiRate" type="number" min="0" max="100">
+        %
+    	</span>
+	</div>
 
-		<div>
-            BONUS時 3倍確率
-            <input id="chance3Rate" type="number" min="0" max="100">
-            %
-        </div>
+		<div class="settingRow">
+    	<span class="settingLabel">上がりカードなんでもOK</span>
+    	<span>
+        <input id="finishRate" type="number" min="0" max="100">
+        %
+    	</span>
+	</div>
+
+		<div class="settingRow">
+    	<span class="settingLabel">BONUS時 3倍</span>
+    	<span>
+        <input id="chance3Rate" type="number" min="0" max="100">
+        %
+    	</span>
+	</div>
 
         <button onclick="saveSetting()">
             保存
         </button>
+
+    </div>
+
 
     </div>
 
@@ -366,7 +394,7 @@
 
 <div class="footer">
 　UNO Rule Maker<br>
-　Version 2.0<br>
+　Version 2.1<br>
 　© 2026 Naoki,Joji Kojima
 </div>
 
